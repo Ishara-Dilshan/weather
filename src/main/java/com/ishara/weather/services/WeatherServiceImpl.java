@@ -32,12 +32,14 @@ public class WeatherServiceImpl implements WeatherService {
         try {
             WeatherResponseDto response = weatherApiClient.getWeatherForecast(city);
 
+            //Grouping data in to days
             Map<LocalDate, List<Double>> groupedTemps = response.getList().stream()
                     .collect(Collectors.groupingBy(
                             item -> item.getDt_txt().toLocalDate(),
                             Collectors.mapping(item -> item.getMain().getTemp(), Collectors.toList())
                     ));
 
+            //Put to map with Date
             Map<LocalDate, Double> dailyAverages = new HashMap<>();
             for (Map.Entry<LocalDate, List<Double>> entry : groupedTemps.entrySet()) {
                 double avg = entry.getValue().stream().mapToDouble(Double::doubleValue).average().orElse(0.0);

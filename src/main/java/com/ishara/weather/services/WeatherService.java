@@ -6,6 +6,11 @@ import java.util.concurrent.CompletableFuture;
 
 public interface WeatherService {
 
+    /**
+     * This method is used to fetch and summarize weather data
+     * @param city
+     * @return
+     */
     CompletableFuture<WeatherSummaryDto> getWeatherSummary(String city);
 
 }

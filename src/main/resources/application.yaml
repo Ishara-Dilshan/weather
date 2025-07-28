@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: weather
+  data:
+    rest:
+      base-path: /api/v1
+
+
+weather:
+  api:
+    url: https://api.openweathermap.org/data/2.5/forecast?q=%s&appid=%s
+    key: 7a0a3f62daa3065809b72c39483ecfb0
